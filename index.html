@@ -1,0 +1,71 @@
+<html>
+<head>
+  <title>JavaScript Game</title>
+</head>
+<style>
+  canvas {
+    border:1px solid gray;
+    background: url('gameWorld.png');
+  }
+  table {
+    text-align:center;
+  }
+  div {
+    width: 650px;
+    text-align: center;
+  }
+</style>
+<body>
+<div>
+<h1>This is my JavaScript Game</h1>
+
+<canvas id="myCanvas" width="600" height="400"></canvas><hr>
+
+
+<table>
+  <tr>
+    <td></td><td><button type="button" onclick="move('y',-50)">Up</button></td><td></td>
+  </tr>
+  <tr>
+    <td><button type="button" onclick="move('x',-50)">Left</button></td><td><button type="button" onclick="move('y',50)">Down</button></td><td><button type="button" onclick="move('x',50)">Right</button></td>
+  </tr>
+</table>
+</div>
+
+<!-- Script here -->
+<script>
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+
+var x = 50;   //set-width
+var y = 300;  //set-height
+
+function move(a,b){
+  ctx.clearRect(x,y,50,50);    //Draw rect with current x,y co.
+  if(a=='x' && ((x + b) <= 550 && (x + b) >= 0)){     //if arg1 equals x then
+    x=x+b;
+  }else if(a=='y' && ((y + b) <= 300 && (y + b) >= 0)){   //if arg1 equals y then
+    y=y+b;
+  }
+  ctx.fillStyle = "#0000FF";
+  ctx.fillRect(x,y,50,50);
+}
+
+move(0);
+
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32 || e.keyCode == 38){
+        //your code
+        move('y',-50);
+    }else if(e.keyCode == 40){
+      move('y',50);
+    }else if(e.keyCode == 37){
+      move('x',-50);
+    }else if(e.keyCode == 39){
+      move('x',50);
+    }
+}
+
+</script>
+</body>
+</html>
